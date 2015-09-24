@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<style>
+body {
+  height: 6000px;
+}
+</style>
+<script>
+onload = function() {
+  function tick(timestamp) {
+    var translation = "translateX(" + (Math.sin(timestamp/1000.0) * 100.0 + 100.0) + "px)";
+    document.getElementById("thingy1").style.transform = translation;
+    document.getElementById("thingy2").style.transform = translation;
+    document.getElementById("thingy3").style.transform = translation;
+    document.getElementById("thingy4").style.transform = translation;
+    requestAnimationFrame(tick);
+  }
+
+  requestAnimationFrame(tick);
+}
+</script>
+<iframe id="thingy1" style="width: 300px; height: 250px;" src="https://google-developers.appspot.com/swiffy/showcase/google-glass-ad_def741e7ed0464770d5f353b14ee27ca.frame?hl=en&amp;redesign=true"></iframe>
+<iframe id="thingy2" style="width: 300px; height: 250px;" src="https://google-developers.appspot.com/swiffy/showcase/google-adsense-ad_39125491676cb972ce2aa27bf10b221f.frame?hl=en&amp;redesign=true">
+</iframe>
+<iframe id="thingy3" style="width: 300px; height: 250px;" src="https://google-developers.appspot.com/swiffy/showcase/symphony-orchestra-ad_d093e64068c2904f6cdae39f007b43da.frame?hl=en&amp;redesign=true">
+</iframe>
+<iframe id="thingy4" style="width: 728px; height: 90px;" src="https://google-developers.appspot.com/swiffy/showcase/google-chrome-ad_58fce9ced519c714df67794bc31fddba.frame?hl=en&amp;redesign=true">
+</iframe>
