@@ -22,12 +22,12 @@ popup.postMessage("hello there!", "https://xhan08.github.io/webapks_tests/post-m
 
 function receiveMessage(event)
 {
-  alert("Message from: " + event.origin);
-
   // Do we trust the sender of this message?  (might be
   // different from what we originally opened, for example).
-  if (event.origin !== "https://xhan08.github.io/webapks_tests/post-message-receiver")
+  if (event.origin !== "https://xhan08.github.io") {
+    alert("Message from: " + event.origin);
     return;
+  }
 
   // event.source is popup
   alert(event.data);
