@@ -14,8 +14,8 @@
 function receiveMessage(event)
 {
   // Do we trust the sender of this message?
-  if (event.origin !== "http://xhan08.github.io/webapks_tests/post-message-sender") {
-    alert("event.origin = " + event.origin);
+  alert("event.origin = " + event.origin);
+  if (event.origin !== "http://xhan08.github.io") {
     return;
   }
 

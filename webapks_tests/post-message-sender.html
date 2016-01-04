@@ -10,7 +10,9 @@
  * In window A's scripts, with A being on <http://example.com:8080>:
  */
 
-var popup = window.open("", "_self");
+var popup = window.open("https://xhan08.github.io/webapks_tests/post-message-sender",
+    "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
+
 //    "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
 
 // When the popup has fully loaded, if not blocked by a popup blocker:
@@ -18,10 +20,11 @@ var popup = window.open("", "_self");
 
 // This will successfully queue a message to be sent to the popup, assuming
 // the window hasn't changed its location.
-popup.postMessage("hello there!", "https://xhan08.github.io/webapks_tests/post-message-receiver");
+popup.postMessage("hello there!", "https://xhan08.github.io");
 
 function receiveMessage(event)
 {
+  alert("Message from: " + event.origin);
   // Do we trust the sender of this message?  (might be
   // different from what we originally opened, for example).
   if (event.origin !== "https://xhan08.github.io") {
