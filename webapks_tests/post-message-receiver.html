@@ -6,26 +6,12 @@
 <h1>Example of window.postMessage: receiver</h1>
 
 <script>
-/*
- * In the popup's scripts, running on <http://example.org>:
- */
-
-// Called sometime after postMessage is called
+// respond to events
 function receiveMessage(event)
 {
-  // Do we trust the sender of this message?
-  alert("event.origin = " + event.origin);
-  if (event.origin !== "http://xhan08.github.io") {
+  if (event.origin !== "http://xhan08.github.io")
     return;
-  }
-
-  // event.source is window.opener
-  // event.data is "hello there!"
-
-  // Assuming you've verified the origin of the received message (which
-  // you must do in any case), a convenient idiom for replying to a
-  // message is to call postMessage on event.source and provide
-  // event.origin as the targetOrigin.
+  console.log('message received:  ' + event.data,event);
   event.source.postMessage("hi there yourself!  the secret response " +
                            "is: rheeeeet!",
                            event.origin);

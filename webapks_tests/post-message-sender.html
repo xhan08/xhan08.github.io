@@ -6,33 +6,25 @@
 <h1>Example of window.postMessage: sender</h1>
 
 <script>
-/*
- * In window A's scripts, with A being on <http://example.com:8080>:
- */
+// create popup window
+var domain = 'https://xhan08.github.io';
+var myPopup = window.open(domain + '/webapks_tests/post-message-receiver.html','myWindow');
 
-var popup = window.open("http://xhan08.github.io",
-    "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
+//periodical message sender
+setInterval(function(){
+        var message = 'Hello!  The time is: ' + (new Date().getTime());
+        console.log('blog.local:  sending message:  ' + message);
+        myPopup.postMessage(message,domain); //send the message and target URI
+},6000);
 
-//    "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
-
-// When the popup has fully loaded, if not blocked by a popup blocker:
-
-
-// This will successfully queue a message to be sent to the popup, assuming
-// the window hasn't changed its location.
-popup.postMessage("hello there!", "https://xhan08.github.io");
-
+// listen to holla back
 function receiveMessage(event)
 {
-  // Do we trust the sender of this message?  (might be
-  // different from what we originally opened, for example).
   if (event.origin !== "https://xhan08.github.io")
     return;
 
-
-  // event.source is popup
   alert(event.data);
-  // event.data is "hi there yourself!  the secret response is: rheeeeet!"
+  console.log('received response:  ', event.data);
 }
 window.addEventListener("message", receiveMessage, false);
 
