@@ -1,0 +1,33 @@
+<html>
+<head>
+<link rel="stylesheet" href="tests.css">
+</head>
+<body>
+<h1>Example of window.postMessage: sender</h1>
+
+<script>
+// create popup window
+var domain = 'https://cs.uwaterloo.ca';
+var myPopup = window.open(domain + '/~l22he/post-message-receiver.html','myWindow');
+
+//periodical message sender
+setInterval(function(){
+        var message = 'Hello!  The time is: ' + (new Date().getTime());
+        console.log('blog.local:  sending message:  ' + message);
+        myPopup.postMessage(message,domain); //send the message and target URI
+},6000);
+
+// listen to holla back
+function receiveMessage(event)
+{
+  if (event.origin !== "https://cs.waterloo.ca")
+    return;
+
+  alert(event.data);
+  console.log('received response:  ', event.data);
+}
+window.addEventListener("message", receiveMessage, false);
+
+</script>
+
+</html>
