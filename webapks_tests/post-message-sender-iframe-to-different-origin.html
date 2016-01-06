@@ -1,0 +1,35 @@
+<html>
+<head>
+<link rel="stylesheet" href="tests.css">
+</head>
+<iframe src="https://cs.uwaterloo.ca/~l22he/post-message-receiver.html" id="myIFrame">
+</iframe>
+<body>
+<h1>Example of window.postMessage: sender</h1>
+
+<script>
+// create popup window
+var domain = 'https://cs.uwaterloo.ca';
+var iframe = document.getElementById('myIFrame').contentWindow;
+
+//periodical message sender
+setInterval(function(){
+        var message = 'Hello!  The time is: ' + (new Date().getTime());
+        console.log('blog.local:  sending message:  ' + message);
+        iframe.postMessage(message,domain); //send the message and target URI
+},6000);
+
+// listen to holla back
+function receiveMessage(event)
+{
+  if (event.origin !== "https://cs.uwaterloo.ca")
+    return;
+
+  alert(event.data);
+  console.log('received response:  ', event.data);
+}
+window.addEventListener("message", receiveMessage, false);
+
+</script>
+
+</html>
