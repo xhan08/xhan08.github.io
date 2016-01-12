@@ -2,14 +2,14 @@
 <head>
 <link rel="stylesheet" href="tests.css">
 </head>
-<iframe src="http://cs.uwaterloo.ca/~l22he/post-message-receiver.html" id="myIFrame">
+<iframe src="https://cs.uwaterloo.ca/~l22he/post-message-receiver.html" id="myIFrame">
 </iframe>
 <body>
 <h1>Example of window.postMessage: sender</h1>
 
 <script>
 // create popup window
-var domain = 'http://cs.uwaterloo.ca';
+var domain = 'https://cs.uwaterloo.ca';
 var iframe = document.getElementById('myIFrame').contentWindow;
 
 //periodical message sender
@@ -22,7 +22,7 @@ setInterval(function(){
 // listen to holla back
 function receiveMessage(event)
 {
-  if (event.origin !== "http://cs.uwaterloo.ca")
+  if (event.origin !== "https://cs.uwaterloo.ca")
     return;
 
   alert(event.data);
